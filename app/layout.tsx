@@ -1,0 +1,45 @@
+import { Analytics } from '@vercel/analytics/next'
+import type { Metadata, Viewport } from 'next'
+import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google'
+import './globals.css'
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' })
+
+export const metadata: Metadata = {
+  title: 'Shayana | CS Student at VIT Chennai',
+  description:
+    'Shayana is a first-year B.Tech Computer Science student at VIT Chennai, exploring AI and quantum computing, one project at a time.',
+  generator: 'v0.app',
+  icons: {
+    icon: [
+      { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-icon.png',
+  },
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'dark',
+  themeColor: '#110d1f',
+  width: 'device-width',
+  initialScale: 1,
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${spaceGrotesk.variable}`}>
+      <body className="antialiased">
+        {children}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
+      </body>
+    </html>
+  )
+}
