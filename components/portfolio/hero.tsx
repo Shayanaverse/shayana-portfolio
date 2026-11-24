@@ -27,6 +27,7 @@ export function Hero() {
           >
             <span className="text-gradient">Shayana</span>
           </h1>
+          <p className="mt-4 text-lg font-medium text-foreground md:text-xl">Now on GitHub</p>
         </FadeIn>
 
         <FadeIn delay={200}>
